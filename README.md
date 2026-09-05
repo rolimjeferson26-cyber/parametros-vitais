@@ -1,0 +1,2 @@
+# parametros-vitais
+parametros vitais
