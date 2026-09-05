@@ -153,20 +153,20 @@
 function classificarIdade(anos, meses) {
   const totalMeses = anos * 12 + meses;
 
-  if (totalMeses <= 1) return {categoria: 'Recém-nascido (0-28 dias)', 'FC': '100-160 bpm', 'FR': '30-60 irpm', 'PA': '~60-80 / 30-45 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (totalMeses <= 3) return {categoria: '1-3 meses', 'FC': '100-160 bpm', 'FR': '30-50 irpm', 'PA': '~65-85 / 40-55 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (totalMeses <= 6) return {categoria: '4-6 meses', 'FC': '90-150 bpm', 'FR': '30-50 irpm', 'PA': '~70-90 / 40-60 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (totalMeses <= 12) return {categoria: '7-12 meses', 'FC': '90-150 bpm', 'FR': '25-45 irpm', 'PA': '~70-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (totalMeses <= 24) return {categoria: '1-2 anos', 'FC': '90-150 bpm', 'FR': '24-40 irpm', 'PA': '~75-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 5) return {categoria: '3-5 anos', 'FC': '80-140 bpm', 'FR': '22-34 irpm', 'PA': '~80-110 / 50-70 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 8) return {categoria: '6-8 anos', 'FC': '70-120 bpm', 'FR': '18-30 irpm', 'PA': '~85-115 / 50-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 12) return {categoria: '9-12 anos', 'FC': '70-120 bpm', 'FR': '18-30 irpm', 'PA': '~90-120 / 55-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 15) return {categoria: '13-15 anos', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~95-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 17) return {categoria: '16-17 anos', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~100-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
-  if (anos <= 64) return {categoria: 'Adulto', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '90/60 a <120/80 mmHg', 'Temperatura': '36,0-37,5 °C', 'SpO₂': '95-100%', 'Consciência': 'Alerta, orientado e responsivo', 'Glicemia': '70-99 mg/dL (jejum)'};
-  return {categoria: 'Idoso', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~90-120/60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36-37,5 °C'};
-}
-
+  if (totalMeses <= 1) return {categoria: 'Recém-nascido (0-28 dias)', 'FC': '100-160 bpm', 'FR': '30-60 cpm', 'TA': '~60-80 / 30-45 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (totalMeses <= 3) return {categoria: '1-3 meses', 'FC': '100-160 bpm', 'FR': '30-50 cpm', 'TA': '~65-85 / 40-55 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (totalMeses <= 6) return {categoria: '4-6 meses', 'FC': '90-150 bpm', 'FR': '30-50 cpm', 'TA': '~70-90 / 40-60 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (totalMeses <= 12) return {categoria: '7-12 meses', 'FC': '90-150 bpm', 'FR': '25-45 cpm', 'TA': '~70-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (totalMeses <= 24) return {categoria: '1-2 anos', 'FC': '90-150 bpm', 'FR': '24-40 cpm', 'TA': '~75-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (anos <= 5) return {categoria: '3-5 anos', 'FC': '80-140 bpm', 'FR': '22-34 cpm', 'TA': '~80-110 / 50-70 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100mg/dL'};
+if (anos <= 8) return {categoria: '6-8 anos', 'FC': '70-120 bpm', 'FR': '18-30 cpm', 'TA': '~85-115 / 50-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (anos <= 12) return {categoria: '9-12 anos', 'FC': '70-120 bpm', 'FR': '18-30 cpm', 'TA': '~90-120 / 55-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (anos <= 15) return {categoria: '13-15 anos', 'FC': '60-100 bpm', 'FR': '12-20 cpm', 'TA': '~95-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (anos <= 17) return {categoria: '16-17 anos', 'FC': '60-100 bpm', 'FR': '12-20 cpm', 'TA': '~100-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '60-100 mg/dL'};
+if (anos <= 64) return {categoria: 'Adulto', 'FC': '60-100 bpm', 'FR': '12-20 cpm', 'TA': '90/60 a <120/80 mmHg', 'Temperatura': '36,0-37,5 °C', 'SpO₂': '95-100%', 'Glicemia': '60-100 mg/dL (jejum)'};
+return {categoria: 'Idoso', 'FC': '60-100 bpm', 'FR': '12-20 cpm', 'TA': '~90-120/60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36-37,5 °C'};
+  }
+  
 function consultar() {
   const anos = parseInt(document.getElementById('anos').value) || 0;
   const meses = parseInt(document.getElementById('meses').value) || 0;
