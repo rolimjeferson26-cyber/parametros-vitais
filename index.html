@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parâmetros Vitais por Idade</title>
+<style>
+  :root {
+    --vermelho: #c0392b;
+    --vermelho-escuro: #8e2418;
+    --cinza-claro: #f5f5f5;
+    --cinza-borda: #ddd;
+    --texto: #222;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--cinza-claro);
+    color: var(--texto);
+    padding: 16px;
+  }
+  .card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  header {
+    background: var(--vermelho);
+    color: white;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  header p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+  .conteudo { padding: 20px; }
+  .campo { margin-bottom: 14px; }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+  }
+  .linha-inputs { display: flex; gap: 10px; }
+  input[type=number] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    background: var(--vermelho);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  button:active { background: var(--vermelho-escuro); }
+  #resultado {
+    margin-top: 20px;
+    display: none;
+  }
+  .categoria {
+    background: var(--vermelho);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  td {
+    padding: 9px 6px;
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+  td:first-child {
+    font-weight: 600;
+    width: 55%;
+  }
+  .aviso {
+    font-size: 0.75rem;
+    color: #777;
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.4;
+  }
+  .rodape {
+    background: var(--cinza-claro);
+    color: #888;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 10px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <header>
+    <h1>🚒 Parâmetros Vitais</h1>
+    <p>Consulta rápida por idade</p>
+  </header>
+
+  <div class="conteudo">
+    <div class="linha-inputs">
+      <div class="campo" style="flex:1">
+        <label for="anos">Anos</label>
+        <input type="number" id="anos" min="0" placeholder="0" inputmode="numeric">
+      </div>
+      <div class="campo" style="flex:1">
+        <label for="meses">Meses</label>
+        <input type="number" id="meses" min="0" max="11" placeholder="0" inputmode="numeric">
+      </div>
+    </div>
+
+    <button onclick="consultar()">Consultar</button>
+
+    <div id="resultado"></div>
+
+    <div class="aviso">
+      Valores de referência gerais. Sempre avalie o contexto clínico e siga o protocolo vigente.
+    </div>
+  </div>
+
+  <div class="rodape">
+    Desenvolvido por Jeferson Rolim — Bombeiro de 3ª
+  </div>
+</div>
+
+<script>
+function classificarIdade(anos, meses) {
+  const totalMeses = anos * 12 + meses;
+
+  if (totalMeses <= 1) return {categoria: 'Recém-nascido (0-28 dias)', 'FC': '100-160 bpm', 'FR': '30-60 irpm', 'PA': '~60-80 / 30-45 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (totalMeses <= 3) return {categoria: '1-3 meses', 'FC': '100-160 bpm', 'FR': '30-50 irpm', 'PA': '~65-85 / 40-55 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (totalMeses <= 6) return {categoria: '4-6 meses', 'FC': '90-150 bpm', 'FR': '30-50 irpm', 'PA': '~70-90 / 40-60 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (totalMeses <= 12) return {categoria: '7-12 meses', 'FC': '90-150 bpm', 'FR': '25-45 irpm', 'PA': '~70-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (totalMeses <= 24) return {categoria: '1-2 anos', 'FC': '90-150 bpm', 'FR': '24-40 irpm', 'PA': '~75-100 / 45-65 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 5) return {categoria: '3-5 anos', 'FC': '80-140 bpm', 'FR': '22-34 irpm', 'PA': '~80-110 / 50-70 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 8) return {categoria: '6-8 anos', 'FC': '70-120 bpm', 'FR': '18-30 irpm', 'PA': '~85-115 / 50-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 12) return {categoria: '9-12 anos', 'FC': '70-120 bpm', 'FR': '18-30 irpm', 'PA': '~90-120 / 55-75 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 15) return {categoria: '13-15 anos', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~95-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 17) return {categoria: '16-17 anos', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~100-130 / 60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36,0-37,5 °C', 'Glicemia': '70-100 mg/dL'};
+  if (anos <= 64) return {categoria: 'Adulto', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '90/60 a <120/80 mmHg', 'Temperatura': '36,0-37,5 °C', 'SpO₂': '95-100%', 'Consciência': 'Alerta, orientado e responsivo', 'Glicemia': '70-99 mg/dL (jejum)'};
+  return {categoria: 'Idoso', 'FC': '60-100 bpm', 'FR': '12-20 irpm', 'PA': '~90-120/60-80 mmHg', 'SpO₂': '95-100%', 'Temperatura': '36-37,5 °C'};
+}
+
+function consultar() {
+  const anos = parseInt(document.getElementById('anos').value) || 0;
+  const meses = parseInt(document.getElementById('meses').value) || 0;
+
+  const dados = classificarIdade(anos, meses);
+  const div = document.getElementById('resultado');
+
+  let linhas = '';
+  for (const chave in dados) {
+    if (chave !== 'categoria') {
+      linhas += `<tr><td>${chave}</td><td>${dados[chave]}</td></tr>`;
+    }
+  }
+
+  div.innerHTML = `
+    <div class="categoria">${dados.categoria}</div>
+    <table>${linhas}</table>
+  `;
+  div.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
