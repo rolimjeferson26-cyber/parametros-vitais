@@ -201,7 +201,6 @@
     padding: 20px;
   }
 </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -355,9 +354,11 @@ class ConsultaEmergencia extends Consulta {
   }
 
   _calcularPrioridade() {
-    if (this.nivelGravidade >= 2) return { texto: 'PRIORIDADE MÁXIMA', classe: 'prioridade-maxima' };
-    if (this.nivelGravidade >= 4) return { texto: 'PRIORIDADE ALTA', classe: 'prioridade-alta' };
-    return { texto: 'PRIORIDADE NORMAL', classe: 'prioridade-normal' };
+    if (this.nivelGravidade <= 1) return { texto: 'EMERGENTE', classe: 'prioridade-maxima' };
+    if (this.nivelGravidade <= 2) return { texto: 'MUITO URGENTE', classe: 'prioridade-alta' };
+    if (this.nivelGravidade <= 3) return { texto: 'URGENTE', classe: 'prioridade-alta' };
+    if (this.nivelGravidade <= 4) return { texto: 'POUCO URGENTE', classe: 'prioridade-alta' };
+    return { texto: 'NÃO URGENTE', classe: 'prioridade-normal' };
   }
 
   // Sobrescreve (override) o método da mãe
@@ -369,7 +370,7 @@ class ConsultaEmergencia extends Consulta {
     ) + `
       <div style="text-align:center; margin-top:10px;">
         <span class="tag-prioridade ${this.prioridade.classe}">
-          🚨 ${this.prioridade.texto} — Gravidade ${this.nivelGravidade}/5
+          🚨 ${this.prioridade.texto} — Gravidade ${this.nivelGravidade}/4
         </span>
       </div>
     `;
@@ -500,13 +501,15 @@ class App {
     const dados = this._validarFormulario();
     if (!dados) return;
 
-    const gravidade = prompt('Nível de gravidade (1 a 5, onde 1 é crítico):', '3');
+    const gravidade = prompt('Nível de gravidade (1 a 4, onde 1 é crítico):', '3');
     const g = parseInt(gravidade);
-    if (isNaN(g) || g < 1 || g > 5) {
-      alert('Gravidade inválida! Usando 5 (normal).');
+    let gravidadeFinal = g;
+    if (isNaN(g) || g < 1 || g > 4) {
+      alert('Gravidade inválida! Usando 4 (normal).');
+      gravidadeFinal = 4;
     }
 
-    const consulta = new ConsultaEmergencia(dados.nome, dados.anos, dados.meses, g || 1);
+    const consulta = new ConsultaEmergencia(dados.nome, dados.anos, dados.meses, gravidadeFinal);
     this._exibirResultado(consulta);
     this.gerenciador.salvar(consulta);
     this.renderizarHistorico();
