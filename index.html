@@ -355,8 +355,8 @@ class ConsultaEmergencia extends Consulta {
   }
 
   _calcularPrioridade() {
-    if (this.nivelGravidade >= 4) return { texto: 'PRIORIDADE MÁXIMA', classe: 'prioridade-maxima' };
-    if (this.nivelGravidade >= 2) return { texto: 'PRIORIDADE ALTA', classe: 'prioridade-alta' };
+    if (this.nivelGravidade >= 2) return { texto: 'PRIORIDADE MÁXIMA', classe: 'prioridade-maxima' };
+    if (this.nivelGravidade >= 4) return { texto: 'PRIORIDADE ALTA', classe: 'prioridade-alta' };
     return { texto: 'PRIORIDADE NORMAL', classe: 'prioridade-normal' };
   }
 
@@ -500,10 +500,10 @@ class App {
     const dados = this._validarFormulario();
     if (!dados) return;
 
-    const gravidade = prompt('Nível de gravidade (1 a 5, onde 5 é crítico):', '3');
+    const gravidade = prompt('Nível de gravidade (1 a 5, onde 1 é crítico):', '3');
     const g = parseInt(gravidade);
     if (isNaN(g) || g < 1 || g > 5) {
-      alert('Gravidade inválida! Usando 1 (normal).');
+      alert('Gravidade inválida! Usando 5 (normal).');
     }
 
     const consulta = new ConsultaEmergencia(dados.nome, dados.anos, dados.meses, g || 1);
